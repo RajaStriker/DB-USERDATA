@@ -1,0 +1,27 @@
+#!/bin/bash
+sudo apt update
+sudo apt upgrade -y
+sudo apt install apache2 -y
+sudo apt install php -y
+sudo apt install mysql-client -y
+sudo apt install wget -y
+sudo apt install unzip -y
+sudo wget https://wordpress.org/latest.zip
+sudo unzip latest.zip
+cd wordpress/
+sudo cp -r * /var/www/html
+cd /var/www/html
+sudo rm -rf index.html
+sudo apt install php-mysql php-cgi php-cli php-gd -y
+sudo systemctl restart apache2
+sudo chown -R www-data:www-data /var/www/
+cd /
+cd var/www/html
+sudo touch wp-config.php
+sudo cp wp-config-sample.php wp-config.php
+sudo chmod 777 wp-config.php
+sudo sed -i 's/database_name_here/${Dbname}/' wp-config.php
+sudo sed -i 's/username_here/${DBusername}/' wp-config.php
+sudo sed -i 's/password_here/${password}/' wp-config.php
+sudo sed -i 's/localhost/${strikerdb.PrivateIp}/' wp-config.php
+sudo chmod 644 wp-config.php
