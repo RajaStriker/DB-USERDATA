@@ -1,0 +1,12 @@
+#!/bin/bash
+apt update 
+apt install mysql-server -y
+mysql -u root -p' ' -e "CREATE USER 'striker'@'%' IDENTIFIED BY '12345678';"
+mysql -u root -p' ' -e "GRANT ALL PRIVILEGES ON *.* TO 'striker'@'%' ;"
+mysql -u root -p' ' -e "FLUSH PRIVILEGES;"
+mysql -u striker -p'12345678' -e "CREATE DATABASE wordpress;"
+mysql -u striker -p'12345678' -e "exit;"
+systemctl restart mysql
+cd /etc/mysql/mysql.conf.d
+sed -i "0,/.*bind-address.*/s//bind-address = 0.0.0.0/" mysqld.cnf
+systemctl restart mysql
