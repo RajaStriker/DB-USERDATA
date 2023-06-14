@@ -20,8 +20,8 @@ cd var/www/html
 sudo touch wp-config.php
 sudo cp wp-config-sample.php wp-config.php
 sudo chmod 777 wp-config.php
-sudo sed -i 's/database_name_here/${Dbname}/' wp-config.php
-sudo sed -i 's/username_here/${DBusername}/' wp-config.php
-sudo sed -i 's/password_here/${password}/' wp-config.php
+sudo sed -i 's/database_name_here/wordpress/' wp-config.php
+sudo sed -i 's/username_here/$striker/' wp-config.php
+sudo sed -i 's/password_here/12345678/' wp-config.php
 sudo sed -i 's/localhost/${strikerdb.PrivateIp}/' wp-config.php
 sudo chmod 644 wp-config.php
